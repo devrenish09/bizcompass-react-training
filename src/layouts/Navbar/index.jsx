@@ -11,6 +11,8 @@ const Navbar = () => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/timezone">Timezone</Link></li>
+                <li><Link to="/functions">Function</Link></li>
+                <li><Link to="/counter">Counter</Link></li>
             </ul>
         </nav>
     );
