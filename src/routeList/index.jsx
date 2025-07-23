@@ -3,7 +3,7 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import NotFound404 from '../pages/NotFound404';
 import TimeZone from '../pages/TimeZone';
-import Function from '../components/Functions';
+import Function from '../pages/Functions';
 import Counter from '../components/Class/Classes';
 
 const RouteList = () => {

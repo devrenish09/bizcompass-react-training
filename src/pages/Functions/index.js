@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const countersData = [
     { id: 1, label: "Apples", count: 5 },
@@ -80,8 +80,53 @@ function createCounterWidget(container, data) {
 }
 
 const Function = () => {
+    //Date 23 July 2025 last commit at : 18:15 PM
     const containerRef = useRef(null);
+    const [errorMsg, setErrorMsg] = useState("");
 
+    //to save user instance &&  DOM Manipulation in JavaScript
+    useEffect(() => {
+        const saveBtn = document.getElementById("saveBtn");
+        const nameInput = document.getElementById("nameInput");
+        const btn = document.getElementById("btn");
+        const output = document.getElementById("output");
+
+        if (!saveBtn || !nameInput || !btn || !output) {
+            console.warn("Some DOM elements not found");
+            return;
+        }
+
+        const handleSave = () => {
+            const name = nameInput.value;
+            console.log("name.length", name.length);
+            
+            if (!name || name.length < 3) {
+                setErrorMsg("Name can not be empty or should be min 3 char long");
+                return
+            }
+            const userData = {
+                username: name,
+                createdAt: new Date().toISOString(),
+            };
+            const jsonData = JSON.stringify(userData, null, 2);
+            setErrorMsg("");
+            document.getElementById("jsonOutput").textContent = jsonData;
+        };
+
+        const handleBtnClick = () => {
+            output.innerHTML = "Button Clicked";
+        };
+
+        saveBtn.addEventListener("click", handleSave);
+        btn.addEventListener("click", handleBtnClick);
+
+        return () => {
+            saveBtn.removeEventListener("click", handleSave);
+            btn.removeEventListener("click", handleBtnClick);
+        };
+    }, []);
+
+    // to display counter widget
     useEffect(() => {
         const container = containerRef.current;
 
@@ -89,6 +134,7 @@ const Function = () => {
 
         countersData.forEach((data) => createCounterWidget(container, data));
     }, []);
+
     // Function Declaration
     function greet(name) {
         return `Hello , How are you ${name} ??`;
@@ -155,7 +201,7 @@ const Function = () => {
         }
     };
 
-    person.greet(); // Hello Bob
+    person.greet(); // log : Hello Bob
 
     // Prototypal inheritance example
     function Person(name) {
@@ -209,17 +255,6 @@ const Function = () => {
     console.log("================================parsed obj to stringfy ========================>", JSON.stringify(parsedObj));
     //end ES5
 
-    //start DOM Manipulation in JavaScript
-    const btn = document.getElementById("btn");
-    const output = document.getElementById("output");
-
-    console.log("============================ btn ============================>", btn);
-    console.log("=============================== output =========================>", output);
-
-    btn?.addEventListener("click", function () {
-        output.innerHTML = "Button Clicked"
-    })
-    //end DOM Manipulation 
     // start Understand JavaScript JSON & Events
     // JavaScript Object
     const user = {
@@ -235,16 +270,6 @@ const Function = () => {
     // Convert back to JavaScript object
     const parsedUser = JSON.parse(jsonString);
     console.log("==================================== parsedUser ================================>", parsedUser.name); // Alice
-
-    document?.getElementById("saveBtn")?.addEventListener("click", () => {
-        const name = document.getElementById("nameInput").value;
-
-        const userData = { username: name, createdAt: new Date().toISOString() };
-
-        const jsonData = JSON.stringify(userData, null, 2); // pretty-print
-        document.getElementById("jsonOutput").textContent = jsonData;
-        console.log("========================================== jsonData ======================================>", jsonData);
-    });
 
     // end Understand JavaScript JSON & Events
 
@@ -356,6 +381,7 @@ const Function = () => {
         console.log("5. Posts fetched [] ==================================== 55555555555 =================================");
     }
 
+    //to check order of running sync/async functions
     async function runApp() {
         loadSettings(); // sync
 
@@ -381,6 +407,7 @@ const Function = () => {
                 <h3>DOM Manipulation</h3>
                 <div ref={containerRef} style={{ textAlign: "center" }} />
                 <input id="nameInput" placeholder="Enter name" />
+                <p style={{ fontSize: "12px", color: "red" }}>{errorMsg ? errorMsg : ""}</p>
                 <button id="saveBtn">Save</button>
                 <pre id="jsonOutput"></pre>
             </div>
