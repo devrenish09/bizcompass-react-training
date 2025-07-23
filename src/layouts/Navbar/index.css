@@ -29,7 +29,12 @@
       padding: 0.5rem 1rem;
       transition: background-color 0.3s ease;
     }
-
+    .navbar-links p {
+      padding-left: 21px;
+      font-size: xx-small;
+      color: white;
+    }
+    
     .navbar-links a:hover {
       background-color: #555;
       border-radius: 4px;

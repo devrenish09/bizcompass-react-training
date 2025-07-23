@@ -375,9 +375,10 @@ const Function = () => {
                 <h3>JavaScript Function</h3>
                 <p>Please to check this module open developer console tool</p>
                 <button onClick={handleClick}>Click to Check Console</button>
-                {/* DOM Manupulation Concept */}
                 <button id="btn">Click Me</button>
                 <p id="output"></p>
+                {/* DOM Manupulation Concept */}
+                <h3>DOM Manipulation</h3>
                 <div ref={containerRef} style={{ textAlign: "center" }} />
                 <input id="nameInput" placeholder="Enter name" />
                 <button id="saveBtn">Save</button>

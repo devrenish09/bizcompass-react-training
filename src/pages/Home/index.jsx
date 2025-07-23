@@ -8,13 +8,13 @@ const Home = () => {
     useEffect(() => {
         socket.on("connect", () => {
             setConnected(true);
-            console.log("🟢 Connected to WebSocket:", socket.id);
+            console.log("Connected to WebSocket:", socket.id);
             console.log("WebSocket ==========================>", socket);
         });
 
         socket.on("disconnect", () => {
             setConnected(false);
-            console.log("🔴 Disconnected from WebSocket");
+            console.log("Disconnected from WebSocket");
         });
 
         socket.on("welcome", (msg) => {
@@ -30,12 +30,12 @@ const Home = () => {
     }, []);
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h1>Home Page</h1>
+        <div style={{ padding: "10px" }}>
+            <h3>Home Page</h3>
             <p>
                 WebSocket Status:{" "}
                 <strong style={{ color: connected ? "green" : "red" }}>
-                    {connected ? "Connected ✅" : "Disconnected ❌"}
+                    {connected ? "Connected" : "Disconnected (May be socker server not running)"}
                 </strong>
             </p>
             <p>{welcomeMsg}</p>

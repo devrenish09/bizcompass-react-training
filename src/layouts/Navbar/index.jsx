@@ -10,9 +10,13 @@ const Navbar = () => {
             <ul className="navbar-links">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About</Link></li>
-                <li><Link to="/timezone">Timezone</Link></li>
-                <li><Link to="/functions">Function</Link></li>
-                <li><Link to="/counter">Counter</Link></li>
+                <li><Link to="/timezone">Timezone </Link>
+                    <p>Date Function</p>
+                </li>
+                <li><Link to="/functions">Function</Link>
+                    <p>Sync/Async</p>
+                </li>
+                <li><Link to="/counter">Counter/Timer</Link></li>
             </ul>
         </nav>
     );
