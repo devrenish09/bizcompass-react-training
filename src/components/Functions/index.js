@@ -262,15 +262,15 @@ const Function = () => {
     localStorage.setItem("user", JSON.stringify(employee));
 
     const userData = JSON.parse(localStorage.getItem("user"));
-    console.log("============================================= userData name web storage =================================>",userData.name);
+    console.log("============================================= userData name web storage =================================>", userData.name);
     // Methods to Use with sessionStorage
     sessionStorage.setItem("username", "Alice");
     const name = sessionStorage.getItem("username");
-    console.log("============================== sessionStorageName ==============================",name);
+    console.log("============================== sessionStorageName ==============================", name);
     // sessionStorage.removeItem("username"); // delet key
     //sessionStorage.clear(); //clear all 
     // end Web Storage API 
-    
+
     // start Step-by-Step: Shallow Copy Example
     const original = {
         name: "Renish",
@@ -280,7 +280,7 @@ const Function = () => {
         }
     }
 
-    const shallowCopy = {...original} ;
+    const shallowCopy = { ...original };
     console.log("======================== shallow copy ===================", shallowCopy);
     // changed nested object age value
     shallowCopy.details.age = 32; // age value changed to 32 from actual 24 
@@ -303,7 +303,7 @@ const Function = () => {
     // Change deep copy's nested value
     deepCopy.details.age = 30;
 
-    console.log("=================== original.details.age deep copy==============",actual.details.age); 
+    console.log("=================== original.details.age deep copy==============", actual.details.age);
 
     const student = {
         name: "Renish",
@@ -313,17 +313,61 @@ const Function = () => {
         }
     };
 
-    const personShallowCopy = {...student };
+    const personShallowCopy = { ...student };
     // personShallowCopy.address.city = "Rajkot";
-    console.log("=================== city of std==============>",personShallowCopy.address.city);
+    console.log("=================== city of std==============>", personShallowCopy.address.city);
 
     const deepCopyOfStudent = JSON.parse(JSON.stringify(student));
 
     deepCopyOfStudent.address.city = "rajjjjkottttt";
 
-    console.log("====================== deepCopyOfStudent =========>",deepCopyOfStudent);
-    
+    console.log("====================== deepCopyOfStudent =========>", deepCopyOfStudent);
+
     //end Deep Copy
+
+    // start Synchronous and Asynchronous JS
+    console.log("Time Created At", new Date().toISOString());
+
+    console.log("1");
+
+    setTimeout(() => {
+        console.log("2");
+    }, 2000); // 2 seconds
+
+    console.log("3");
+
+    useEffect(() => {
+        runApp();
+    }, []);
+
+    function loadSettings() {
+        console.log("1. Loading settings (sync) ========================= 111111111111 =================");
+    }
+
+    async function fetchUser() {
+        console.log("2. Fetching user... ========================== 222222222222 ==============================");
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        console.log("3. User data fetched [] ======================== 33333333333 =============================");
+    }
+
+    async function fetchPosts() {
+        console.log("4. Fetching posts...  =============================== 44444444444 =================================");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log("5. Posts fetched [] ==================================== 55555555555 =================================");
+    }
+
+    async function runApp() {
+        loadSettings(); // sync
+
+        await fetchUser(); // async (takes 2 sec)
+        await fetchPosts(); // async (takes 1 sec)
+
+        console.log("6. All done ============================ 6666666666 ========================================");
+    }
+
+    //end Synchronous and Asynchronous JS
+
+
 
     return (
         <div>
